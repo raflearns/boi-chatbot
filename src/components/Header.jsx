@@ -13,7 +13,7 @@ export default function Header({ isDark, setIsDark, language, setLanguage }) {
         </motion.div>
         <div>
           <h1 className="text-xl font-bold tracking-tight text-slate-800 dark:text-white leading-none">Boi</h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Premium AI Assistant</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Your AI Friend</p>
         </div>
       </div>
       

@@ -43,7 +43,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative w-full h-[100dvh] flex flex-col items-center justify-center font-sans overflow-hidden">
+  <div className="relative w-full h-[100dvh] flex flex-col items-center justify-center font-sans overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
       {/* Modern Soft Animated Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-200/40 dark:bg-indigo-900/20 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[100px] animate-blob" />
