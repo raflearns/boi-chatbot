@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/40 dark:bg-gray-900/40 backdrop-blur-lg border border-white/30 dark:border-gray-700/50 shadow-xl rounded-2xl;
+  }
+}
+
+/* Custom Scrollbar for smooth UX */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.8);
+}
+
+body {
+  @apply text-gray-800 dark:text-gray-100 transition-colors duration-500 overflow-hidden;
+}
