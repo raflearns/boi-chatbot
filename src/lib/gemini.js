@@ -9,9 +9,10 @@ export const generateBoiResponse = async (chatHistory, newMessage, language) => 
 
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
-    // Upgraded to 1.5-flash for faster responses and much higher free-tier rate limits
+    
+    // Upgraded to the current active model to fix the 404 shutdown error
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-3.5-flash",
       systemInstruction: `You are Boi, a premium, intelligent, and highly empathetic AI assistant. Your goal is to be helpful, concise, warm, and highly conversational. Do not sound robotic. Use natural formatting. 
       IMPORTANT: You must reply entirely in ${language}. Do not break character.`,
     });

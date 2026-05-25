@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* THIS LINE FIXES DARK MODE IN TAILWIND V4 */
+@custom-variant dark (&:is(.dark *));
+
 @layer utilities {
   .glass-panel {
     @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border border-white/40 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)];
@@ -10,4 +13,4 @@
 ::-webkit-scrollbar {
   width: 5px;
 }
-/* ...rest of your css stays exactly the same... */
+/* ... the rest of your css stays exactly the same ... */
