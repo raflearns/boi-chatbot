@@ -1,57 +1,44 @@
-import { Send, Loader2 } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { Moon, Sun, Languages, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function InputArea({ onSendMessage, isTyping }) {
-  const [input, setInput] = useState('');
-  const textareaRef = useRef(null);
-
-  // Auto-resize textarea
-  useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 120) + 'px';
-    }
-  }, [input]);
-
-  const handleSubmit = () => {
-    if (input.trim() && !isTyping) {
-      onSendMessage(input.trim());
-      setInput('');
-      if (textareaRef.current) textareaRef.current.style.height = 'auto';
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit();
-    }
-  };
-
+export default function Header({ isDark, setIsDark, language, setLanguage }) {
   return (
-    <div className="glass-panel rounded-2xl p-2 z-10 relative shrink-0">
-      <div className="flex items-end gap-2 bg-slate-100/50 dark:bg-slate-900/50 rounded-xl border border-slate-200/50 dark:border-slate-700/50 p-2 transition-all focus-within:ring-2 focus-within:ring-indigo-500/20">
-        <textarea
-          ref={textareaRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Message Boi... (Shift + Enter for new line)"
-          className="flex-1 max-h-[120px] min-h-[44px] bg-transparent border-none outline-none px-3 py-3 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 resize-none overflow-y-auto font-medium text-[15px]"
-          disabled={isTyping}
-          rows={1}
-        />
-        <motion.button
-          whileHover={input.trim() && !isTyping ? { scale: 1.05 } : {}}
-          whileTap={input.trim() && !isTyping ? { scale: 0.95 } : {}}
-          onClick={handleSubmit}
-          disabled={!input.trim() || isTyping}
-          className="shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg flex items-center justify-center h-[44px] w-[44px] mb-[2px]"
+    <header className="glass-panel rounded-2xl p-4 flex justify-between items-center z-10 relative shrink-0">
+      <div className="flex items-center gap-3">
+        <motion.div 
+          whileHover={{ rotate: 15, scale: 1.05 }}
+          className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30"
         >
-          {isTyping ? <Loader2 className="animate-spin" size={20} /> : <Send size={18} className="translate-x-[1px]" />}
+          <Sparkles size={20} className="animate-pulse-slow" />
+        </motion.div>
+        <div>
+          <h1 className="text-xl font-bold tracking-tight text-slate-800 dark:text-white leading-none">Boi</h1>
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Premium AI Assistant</p>
+        </div>
+      </div>
+      
+      <div className="flex items-center gap-2">
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setLanguage(language === 'English' ? 'Tagalog' : 'English')}
+          className="px-3 py-2 rounded-lg hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300"
+        >
+          <Languages size={18} />
+          <span className="hidden sm:inline">{language}</span>
+        </motion.button>
+        
+        <div className="w-[1px] h-6 bg-slate-200 dark:bg-slate-700 mx-1" />
+        
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsDark(!isDark)}
+          className="p-2 rounded-lg hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors text-slate-700 dark:text-slate-300"
+        >
+          {isDark ? <Sun size={20} /> : <Moon size={20} />}
         </motion.button>
       </div>
-    </div>
+    </header>
   );
 }
